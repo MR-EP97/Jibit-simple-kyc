@@ -17,7 +17,7 @@ class ProfileResource extends JsonResource
     {
         return [
             'national_id' => $this->national_id,
-            'avatar' => $this->avatar,
+            'avatar' => route('kyc.download-avatar', $this->avatar),
             'birth_date' => Carbon::make($this->birth_date)->format('Y-m-d'),
         ];
     }

@@ -37,4 +37,12 @@ class ProfileService
     {
         return $this->profileRepository->find($id);
     }
+
+    public function findByNationalId($national_id)
+    {
+        return $this->profileRepository
+            ->query()
+            ->where('national_id', $national_id)
+            ->first();
+    }
 }

@@ -16,5 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/kyc',[ProfileController::class, 'store']);
+Route::post('/kyc', [ProfileController::class, 'store']);
+Route::get('/kyc', [ProfileController::class, 'show']);
+Route::get('/kyc/download-avatar/{avatar}', [ProfileController::class, 'downloadAvatar'])->name('kyc.download-avatar');
 
