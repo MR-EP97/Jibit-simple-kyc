@@ -10,10 +10,12 @@ class Profile extends Model
 {
 
     use HasFactory;
+
     protected $fillable = [
         'national_id',
         'avatar',
         'birth_date',
+        'user_id',
     ];
 
     protected $casts = [
