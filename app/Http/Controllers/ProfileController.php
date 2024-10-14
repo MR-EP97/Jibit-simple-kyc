@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
         return $this->success(
             'Profile created successfully',
-            array(ProfileResource::make($profile)),
+            ProfileResource::make($profile),
             HttpResponse::HTTP_CREATED
         );
     }
@@ -51,7 +51,7 @@ class ProfileController extends Controller
 
             return $this->success(
                 'Profile found successfully',
-                array(ProfileResource::make($profile))
+                ProfileResource::make($profile)
             );
         }
 

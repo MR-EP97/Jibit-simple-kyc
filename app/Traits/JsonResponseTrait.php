@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
 trait JsonResponseTrait
 {
     public function success(string $message = '',
-                            array  $data = [],
+                            mixed  $data = [],
                             int    $code = HttpResponse::HTTP_OK): JsonResponse
     {
         return response()->json([
@@ -21,7 +21,7 @@ trait JsonResponseTrait
 
 
     public function error(string $message = 'Not found',
-                          array  $data = [],
+                          mixed  $data = [],
                           int    $code = HttpResponse::HTTP_NOT_FOUND): JsonResponse
     {
         return response()->json([
