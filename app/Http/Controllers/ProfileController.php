@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileShowRequest;
+
 use App\Http\Requests\ProfileStoreRequest;
 use App\Http\Resources\ProfileResource;
 use App\Models\Profile;
@@ -12,8 +12,6 @@ use App\Services\ProfileService;
 use App\Traits\JsonResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 
@@ -60,7 +58,7 @@ class ProfileController extends Controller
         return $this->error();
     }
 
-    public function downloadAvatar($avatar)
+    public function downloadAvatar(string $avatar)
     {
         return $this->downloader->download('avatars', $avatar);
     }
