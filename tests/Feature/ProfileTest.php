@@ -38,10 +38,7 @@ it('national id search', function () {
 
     $storeResponse = $this->post(route('profile.store'), $params);
 
-
     $response = $this->get(route('profile.show', ['national_id' => $params['national_id']]));
-
-    \Log::info(route('kyc.download-avatar', ['avatar' => $storeResponse->getOriginalContent()['data']['avatar']]));
 
 
     $response->assertJson([

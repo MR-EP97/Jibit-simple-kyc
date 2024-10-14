@@ -1,0 +1,156 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "description": "This is a sample API for demonstration purposes.",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:80/",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/kyc": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Create a new profile",
+                "operationId": "d27f165d090f492bde81620f64b32c11",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "national_id": {
+                                        "type": "string",
+                                        "example": "0123456789"
+                                    },
+                                    "avatar": {
+                                        "type": "file"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Profile created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "national_id": {
+                                            "type": "string",
+                                            "example": "john.doe@example.com"
+                                        },
+                                        "birth_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "1990-01-01"
+                                        },
+                                        "avatar_url": {
+                                            "type": "string",
+                                            "example": "https://example.com/storage/avatars/123.jpg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "invalid data"
+                    }
+                }
+            }
+        },
+        "/api/kyc/search": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "search profile",
+                "operationId": "c228e42c4a6d58244ca73cced1e0a115",
+                "parameters": [
+                    {
+                        "name": "national_id",
+                        "in": "query",
+                        "description": "national id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile found successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Profile"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Profile not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Profile": {
+                "title": "Profile",
+                "required": [
+                    "national_id",
+                    "avatar",
+                    "birth_date"
+                ],
+                "properties": {
+                    "national_id": {
+                        "type": "string",
+                        "example": "1234567890"
+                    },
+                    "avatar": {
+                        "type": "file"
+                    },
+                    "birth_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "1990-01-01"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Profile",
+            "description": "Profile"
+        }
+    ]
+}

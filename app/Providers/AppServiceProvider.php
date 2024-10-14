@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Register any application services.
      */
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProfileService::class, function ($app) {
             return new ProfileService($app->make(ProfileRepository::class));
         });
+
+        $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
     }
 
     /**

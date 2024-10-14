@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/kyc', [ProfileController::class, 'store'])->name('profile.store');
-Route::get('/kyc/search', [ProfileController::class, 'show'])->name('profile.show');
-Route::get('/kyc/download-avatar/{avatar}', [ProfileController::class, 'downloadAvatar'])->name('kyc.download-avatar');
-
+Route::prefix('kyc')->group(function () {
+    Route::post('', [ProfileController::class, 'store'])->name('profile.store');
+    Route::get('search', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('download-avatar/{avatar}', [ProfileController::class, 'downloadAvatar'])->name('kyc.download-avatar');
+});
